@@ -101,7 +101,10 @@ export const Dashboard: React.FC = () => {
     {
       id: "external-integration",
       label: "外部連携",
-      onClick: () => setSidebarOpen(false),
+      onClick: () => {
+        setSidebarOpen(false);
+        navigate("/system-settings");
+      },
     },
     {
       id: "system",

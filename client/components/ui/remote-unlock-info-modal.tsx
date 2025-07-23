@@ -31,7 +31,7 @@ export const RemoteUnlockInfoModal: React.FC<RemoteUnlockInfoModalProps> = ({
       {/* Backdrop */}
       <div className="fixed inset-0 z-50 bg-black/80">
         {/* Modal */}
-        <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] bg-[#5C6D81] border-4 border-[#5C6D81] rounded-2xl overflow-hidden">
+        <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[600px] bg-[#4F5965] border-4 border-[#4F5965] rounded-2xl overflow-hidden">
           {/* Close button */}
           <button
             onClick={onClose}
@@ -55,9 +55,135 @@ export const RemoteUnlockInfoModal: React.FC<RemoteUnlockInfoModalProps> = ({
           <div className="flex h-full">
             {/* Left side - Box diagram */}
             <div className="flex-shrink-0 w-[450px] h-[500px] m-[80px] mr-[40px] relative">
-              <div className="w-full h-full bg-white/40 border-4 border-[#5C6D81] rounded-2xl relative overflow-hidden">
-                {/* Box layout diagram */}
-                <div className="absolute inset-0 bg-[#424549]/80 flex items-center justify-center">
+              <div className="w-full h-full bg-white/40 rounded-2xl relative overflow-hidden p-4">
+                {/* Box layout diagram matching Figma design */}
+                <div className="w-full h-full bg-[#424549] border-2 border-[#2a2a2a] rounded-lg">
+                  {/* Grid container */}
+                  <div className="relative w-full h-full grid grid-cols-2 p-1">
+                    {/* Left Column - Control/Storage Areas */}
+                    <div className="grid grid-rows-4 h-[444px]">
+                      {/* Top left sections - empty storage areas */}
+                      <div className="bg-[#424549] border border-[#000]"></div>
+                      <div className="relative w-full h-full grid grid-cols-2">
+                        <div className="grid grid-rows-4">
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                        </div>
+                        <div className="grid grid-rows-4">
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                        </div>
+                      </div>
+                      <div className="relative w-full h-full grid grid-cols-2">
+                        <div className="grid grid-rows-4">
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                        </div>
+                        <div className="grid grid-rows-4">
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                          <div className="bg-[#424549] border border-[#000]"></div>
+                        </div>
+                      </div>
+                      {/* G05 - Bottom left */}
+                      <div
+                        className={`bg-[#4F5965] border border-[#000] flex items-center justify-center text-center ${
+                          data.box === "G05"
+                            ? "ring-4 ring-yellow-400 ring-inset"
+                            : ""
+                        }`}
+                      >
+                        <span className="text-[#FFF8BD] text-sm font-bold">
+                          G05{" "}
+                          {data.box === "G05"
+                            ? `${data.room} ${data.status}`
+                            : "204 集荷"}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Right Column - Delivery Boxes */}
+                    <div className="grid grid-rows-4 h-[444px]">
+                      {/* G01 - Top right */}
+                      <div
+                        className={`bg-[#4F5965] border border-[#000] flex items-center justify-center text-center ${
+                          data.box === "G01"
+                            ? "ring-4 ring-yellow-400 ring-inset"
+                            : ""
+                        }`}
+                      >
+                        <span className="text-[#FFF8BD] text-sm font-normal">
+                          G01{" "}
+                          {data.box === "G01" && data.status !== "--"
+                            ? `${data.room} ${data.status}`
+                            : "空き"}
+                        </span>
+                      </div>
+
+                      {/* G02 - Second row with display screen */}
+                      <div
+                        className={`bg-[#424549] border border-[#000] flex flex-col ${
+                          data.box === "G02"
+                            ? "ring-4 ring-yellow-400 ring-inset"
+                            : ""
+                        }`}
+                      >
+                        {/* Display area */}
+                        <div className="flex-1 flex items-end justify-center h-[90px] p-4">
+                          <div className="w-20 h-14 bg-[#28292C] mr-2"></div>
+                          <div className="w-6 h-6 bg-[#28292C]"></div>
+                        </div>
+                        {/* G02 label area */}
+                        <div className="h-6 bg-[#4F5965] flex items-center justify-center border-t border-[#000]">
+                          <span className="text-[#FFF8BD] text-xs font-bold">
+                            G02{" "}
+                            {data.box === "G02"
+                              ? `${data.room} ${data.status}`
+                              : "101 お届け"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* G03 - Third row */}
+                      <div
+                        className={`bg-[#4F5965] border border-[#000] flex items-center justify-center text-center ${
+                          data.box === "G03"
+                            ? "ring-4 ring-yellow-400 ring-inset"
+                            : ""
+                        }`}
+                      >
+                        <span className="text-[#FFF8BD] text-sm font-normal">
+                          G03{" "}
+                          {data.box === "G03" && data.status !== "--"
+                            ? `${data.room} ${data.status}`
+                            : "空き"}
+                        </span>
+                      </div>
+
+                      {/* G04 - Bottom right */}
+                      <div
+                        className={`bg-[#4F5965] border border-[#000] flex items-center justify-center text-center ${
+                          data.box === "G04"
+                            ? "ring-4 ring-yellow-400 ring-inset"
+                            : ""
+                        }`}
+                      >
+                        <span className="text-[#FFF8BD] text-sm font-bold">
+                          G04{" "}
+                          {data.box === "G04"
+                            ? `${data.room} ${data.status}`
+                            : "302 集荷"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

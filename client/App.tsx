@@ -20,7 +20,7 @@ import { Security } from "./pages/Security";
 import NotFound from "./pages/NotFound";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 import { DeliveryBox } from "./pages/DeliveryBox";
-
+import { SystemSettings } from "./pages/SystemSettings";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -102,6 +102,14 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <DisplaySettings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/system-settings"
+              element={
+                <ProtectedRoute>
+                  <SystemSettings />
                 </ProtectedRoute>
               }
             />

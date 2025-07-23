@@ -72,7 +72,10 @@ export const UsageStatus: React.FC = () => {
     {
       id: "external-integration",
       label: "外部連携",
-      onClick: () => setSidebarOpen(false),
+      onClick: () => {
+        setSidebarOpen(false);
+        navigate("/system-settings");
+      },
     },
     {
       id: "system",
@@ -106,7 +109,6 @@ export const UsageStatus: React.FC = () => {
       ],
     },
   ];
-
   const columns = [
     { key: 'box', header: 'ボックス番号', width: '250px' },
     { key: 'room', header: '利用中部屋番号', width: '250px' },
